@@ -1,0 +1,446 @@
+
+loguearse como root
+
+sudo su
+
+-------------------------
+instalacion .deb
+-------------------
+dpkg -i paquete.deb
+
+-------------------------
+resolver dependencias
+------------------------
+sudo apt -f install
+
+--------------------------
+permisos
+---------------------------
+chown 	(Used to change user ownership of a file or directory)
+chgrp 	(Used to change group ownership)
+chmod 	(Used to change the permissions on the file which can be done separately for owner, group and the rest of the world)
+
+
+
+
+Para cambiar los permisos de un archivo o una carpeta es necesario disponer del permiso de escritura (w) sobre dicho archivo o carpeta. Para hacerlo, se utiliza el comando chmod. La sintaxis del comando chmod es la siguiente:
+
+    chmod [opciones] permiso nombre_archivo_o_carpeta
+
+Los permisos se pueden representar de dos formas. La primera es mediante las iniciales de a quién va dirigido el permiso (usuario=u, grupo=g, resto=o (other)), seguido de un signo + si se quiere añadir permiso o un signo - si se quiere quitar y seguido del tipo de permiso (lectura=r, escritura=w y ejecución=x). Ejemplos:
+
+    // Dar permiso de escritura al usuario propietario sobre el archivo 'examen.txt'
+    # chmod u+w examen.txt
+
+    // Quitar permiso de escritura al resto de usuarios sobre el archivo 'examen.txt'
+    # chmod o-w examen.txt
+
+    // Dar permiso de ejecución al grupo propietario sobre el archivo '/usr/bin/games/tetris'
+    # chmod g+x /usr/bin/games/tetris
+
+    // Dar permiso de lectura al grupo propietario sobre el archivo 'examen.txt'
+    # chmod g+r examen.txt
+
+    // Se pueden poner varios permisos juntos separados por comas
+    # chmod u+w,g-r,o-r examen.txt
+
+    // Se pueden poner varios usuarios juntos
+    # chmod ug+w examen.txt
+
+
+Permisos con numeros
+
+    4 if read permission is desired.
+    2 if write permission is desired.
+    1 if execute permission is desired.
+
+Thus 7 means read/write/execute, 6 means read/write, and 5 means read/execute.
+
+When you apply this to the chmod command you have to give three digits for each degree of freedom, such as in
+
+$ chmod 755 a_file
+$ ls -l a_file
+-rwxr-xr-x 1 coop coop 1601 Mar 9 15:04 a_file
+
+
+-----------------------------------
+ssh login
+-----------------------------------
+
+ssh -p 22 blac@ec2-54-144-44-156.compute-1.amazonaws.com
+
+some binaries
+-------------------------
+ps 	Produces a list of processes along with status information for the system.
+ls 	Produces a listing of the contents of a directory.
+cp 	Used to copy files.
+
+
+-----------------------------------
+
+
+Permisos en forma recursiva
+
+#chmod -R 777 /opt/lampp/htdocs
+
+cambio de propietarios
+
+chown -R user.grupo directorio/
+----------------------------
+ Comandos Linux - Mover, Copiar, Borrar y Visualizar Archivos
+Aquí tenemos algunos comandos útiles para trabajar con archivos:
+
+Listar todos los archivos (excepto los ocultos) del directorio actual, en formato detallado.
+ls -l
+
+Listar los archivos del directorio actual, indicando el tipo de archivo.
+ls -F
+
+Listar todos los archivos (incluyendo los ocultos) del directorio actual, en formato detallado y presentarlo en columnas.
+ls -laC
+
+Borrar el archivo o directorio denominado "fichero"
+rm fichero
+
+Borrar el directorio denominado "directorio", incluyendo todos sus archivos y subdirectorios.
+rm -rf directorio
+
+Copiar el archivo o directorio denominado "fichero" al directorio "/home/datos".
+cp fichero /home/datos/
+
+Mover el archivo o directorio denominado "fichero" al directorio "/home/datos".
+mv fichero /home/datos/
+
+copiar todo lo contenido de origen a destino
+cp /ruta/al/directorio/origen/* /ruta/al/directorio/destino
+
+
+Copiar usando archivo pem, y secure copy to maquina local
+scp -i pollux-production.pem pollux@52.71.26.72:/home/pollux/pollux-docker/dump.sql /home/darwin
+
+Visualizar el archivo denominado "archivo".
+cat archivo
+
+Visualizar todas las paginas de mantenimiento que contienen la palabra "palabraclave".
+man -k palabraclave
+
+Visualizar el archivo denominado "archivo", una página a la vez. Para avanzar a la siguiente página se debe presionar la barra espaciadora.
+more archivo
+
+Visualizar las 10 primeras líneas del archivo denominado "archivo".
+head archivo
+
+Visualizar las 20 primeras líneas del archivo denominado "archivo".
+head -20 archivo
+
+Visualizar las 10 últimas líneas del archivo denominado "archivo".
+tail archivo
+
+Visualizar las 20 últimas líneas del archivo denominado "archivo".
+tail -20 archivo
+
+------------------------------
+Compresion de data
+--------------------------
+Compresses all files in the current directory; each file is compressed and renamed with a .gz extension.
+gzip * 
+
+
+Compresses all files in the projectX directory along with all files in all of the directories under projectX.
+gzip -r projectX 	
+
+
+De-compresses foo found in the file foo.gz. Under the hood, gunzip command is actually the same as gzip –d.
+
+gunzip foo
+
+
+Compress all of the files in the current directory and replaces each file with a file renamed with a .bz2 extension.
+
+bzip2 * 
+
+Compresses all files in the current directory and places them in the file backup.zip.
+zip backup * 	
+
+Archives your login directory (~) and all files and directories under it in the file backup.zip.
+zip -r backup.zip ~ 	
+
+Extracts all files in the file backup.zip and places them in the current directory.
+
+unzip backup.zip 	
+
+-----------------------
+uso del comando tar
+------------------------
+
+Extract all the files in mydir.tar into the mydir directory
+$ tar xvf mydir.tar 	
+
+Create the archive and compress with gzip
+$ tar zcvf mydir.tar.gz mydir 	
+
+Extract all the files in mydir.tar.gz into the mydir directory. Note you do not have to tell tar it is in gzip format.
+$ tar xvf mydir.tar.gz 
+
+-----------------------
+Usuarios y grupos
+-----------------------
+
+$ sudo useradd turkey (agregar usuario turkey)
+
+$ id turkey (informacion del usuario turkey)
+
+$ userdel turkey (remover usuario turkey)
+
+$ sudo /usr/sbin/groupadd anewgroup (agregar nuevo grupo)
+
+$ sudo /usr/sbin/groupdel anewgroup (remover grupo)
+
+$ sudo /usr/sbin/usermod -G anewgroup turkey (agregar usuario a un nuevo grupo)
+
+
+--------------------------------
+CortaFuegos
+--------------------------------
+ver estatus: sudo ufw status
+
+--------------------
+utilidades
+--------------------
+CTRL-R 	(Search previously used commands)
+
+history (historial de comandos)
+
+--------------------------
+Atajos del teclado
+--------------------------
+
+Keyboard Shortcut 
+CTRL-L 	Clears the screen
+CTRL-D 	Exits the current shell
+CTRL-Z 	Puts the current process into suspended background
+CTRL-C 	Kills the current process
+CTRL-H 	Works the same as backspace
+CTRL-A 	Goes to the beginning of the line
+CTRL-W 	Deletes the word before the cursor
+CTRL-U 	Deletes from beginning of line to cursor position
+CTRL-E 	Goes to the end of the line
+Tab 	Auto-completes files, directories, and binaries
+
+------------------------------
+Text editors vi
+-----------------------------
+Working with Files in vi
+
+vi myfile 	Start the vi editor and edit the myfile file
+vi -r myfile 	Start vi and edit myfile in recovery mode from a system crash
+:r file2 	Read in file2 and insert at current position
+:w 	Write to the file
+:w myfile 	Write out the file to myfile
+:w! file2 	Overwrite file2
+:x or :wq 	Exit vi and write out modified file
+:q 	Quit vi
+:q! 	Quit vi even though modifications have not been saved
+
+
+Changing Cursor Positions in vi
+
+arrow keys 	To move up, down, left and right
+j or <ret> 	To move one line down
+k 	To move one line up
+h or Backspace 	To move one character left
+l or Space 	To move one character right
+0 	To move to beginning of line
+$ 	To move to end of line
+w 	To move to beginning of next word
+:0 or 1G 	To move to beginning of file
+:n or nG 	To move to line n
+:$ or G 	To move to last line in file
+CTRL-F or Page Down 	To move forward one page
+CTRL-B or Page Up 	To move backward one page
+^l 	To refresh and center screen
+
+Searching for Text in vi
+
+The table describes the most important commands used when searching for text in vi. The ENTER key should be pressed after typing the search pattern.
+Command 	Usage
+/pattern 	Search forward for pattern
+?pattern 	Search backward for pattern
+
+The table describes the most important keystrokes used when searching for text in vi.
+Key 	Usage
+n 	Move to next occurrence of search pattern
+N 	Move to previous occurrence of search pattern
+-------------------------------------
+Cuentas en Linux
+-----------------------------------
+*root
+*system
+*normal
+*network
+
+Operaciones que se requiere permisos de root
+
+Creating, removing and managing user accounts.
+Managing software packages.
+Removing or modifying system files.
+Restarting system services.
+
+----------------------------------------
+Concatenar y Combinar archivos con cat
+----------------------------------------
+Command 					Usage
+cat file1 file2 	Concatenate multiple files and display the output; i.e., the entire content of the first file is followed by that of the second file.
+cat file1 file2 > newfile 	Combine multiple files and save the output into a new file.
+cat file >> existingfile 	Append a file to the end of an existing file.
+cat > file 	Any subsequent lines typed will go into the file until CTRL-D is typed.
+cat >> file 	Any subsequent lines are appended to the file until CTRL-D is typed.
+
+
+----------------------------------------------------
+sort is used to rearrange the lines of a text file
+----------------------------------------------------
+
+sort <filename> 	Sort the lines in the specified file
+cat file1 file2 | sort 	Append the two files, then sort the lines and display the output on the terminal
+sort -r <filename> 	Sort the lines in reverse order
+
+When used with the -u option, sort checks for unique values after sorting the records (lines). It is equivalent to running uniq (which we shall discuss) on the output of sort.
+
+
+----------------------------------
+
+uniq is used to remove duplicate lines in a text file and is useful for simplifying text display
+-----------------------------------------
+
+To remove duplicate entries from some files, use the following command: sort file1 file2 | uniq > file3
+
+OR
+
+sort -u file1 file2 > file3
+
+---------------------
+Patrones de busqueda
+---------------------
+
+Search Patterns 	Usage
+.(dot) 	Match any single character
+a|z 	Match a or z
+$ 	Match end of string
+* 	Match preceding item 0 or more times
+
+For example, Consider the following sentence:
+
+the quick brown fox jumped over the lazy dog
+
+Some of the patterns that can be applied to this sentence are as follows:
+Command 	Usage
+a.. 	matches azy
+b.|j. 	matches both br and ju
+..$ 	matches og
+l.* 	matches lazy dog
+l.*y 	matches lazy
+the.* 	matches the whole sentence
+
+-------------------
+grep
+----------------------
+grep is extensively used as a primary text searching tool. 
+Command 				Usage
+grep [pattern] <filename> 	Search for a pattern in a file and print all matching lines
+grep -v [pattern] <filename> 	Print all lines that do not match the pattern
+grep [0-9] <filename> 	Print the lines that contain the numbers 0 through 9
+grep -C 3 [pattern] <filename> 	Print context of lines (specified number of lines above and below the pattern) for matching the pattern. Here the number of lines is specified as 3.
+
+
+
+--------------------------
+tr (translate)
+---------------------------
+Command 								Usage
+$ tr abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 	Convert lower case to upper case
+$ tr '{}' '()' < inputfile > outputfile 			Translate braces into parenthesis
+$ echo "This is for testing" | tr [:space:] '\t' 	Translate white-space to tabs
+$ echo "This   is   for    testing" | tr -s [:space:]
+								Squeeze repetition of characters using -s
+$ echo "the geek stuff" | tr -d 't' 			Delete specified characters using -d option
+$ echo "my username is 432234" | tr -cd [:digit:] 	Complement the sets using -c option
+$ tr -cd [:print:] < file.txt 				Remove all non-printable character from a file
+$ tr -s '\n' ' ' < file.txt 					Join all the lines in a file into a single line
+
+-------------------------
+tee
+---------------------
+
+tee takes the output from any command, and while sending it to standard output,
+it also saves it to a file.
+
+example: ls -l | tee newfile
+
+----------------------------
+wc
+----------------------------
+wc (word count) counts the number of lines, words, 
+and characters in a file or list of files
+
+Option 	Description
+–l 	display the number of lines.
+-c 	display the number of bytes.
+-w 	display the number of words.
+
+------------------------
+head and tail
+---------------------
+head:
+reads the first few lines of each named file (10 by default)
+and displays it on standard output.
+
+For example, If you want to print the first 5 lines from atmtrans.txt,
+use the following command:
+
+$ head –n 5 atmtrans.txt
+
+tail:
+prints the last few lines of each named file. 
+
+nano
+-------------
+File Control in nano
+
+    nano index.php Open or create the file “index.php” with nano on command line.
+    Ctrl-o Y Enter Save changes.
+    Ctrl-r Alt-f Open a new file with a new buffer within nano.
+    Alt-> Switch to the next file buffer in nano.
+    Alt-< Switch to the previous file buffer in nano.
+    Ctrl-x Quit nano.
+
+Navigating through file contents in nano
+
+    Ctrl-a Move to the beginning of the current line.
+    Ctrl-e Move to the end of the current line.
+    Ctrl-v Move down one page.
+    Ctrl-y Move up one page.
+    Alt-\ Go to the beginning of the file.
+    Alt-/ Go to the end of the file.
+    Alt-g Go to a target line number.
+    Alt-] Jump to matching open/close symbol.
+    Alt-a Alt-} Select a block and indent the block.
+    Alt-a Alt-{ Select a block and outden the block.
+
+Copy and Paste in nano
+
+    Alt-a To select a block for copy or cut operation, do Alt-a again to unselect.
+    Alt-a Alt-^ Copy a highlighted block to the clipboard.
+    Alt-a Ctrl-k Cut a highlighted block to the clipboard.
+    Ctrl-k Cut from the current cursor position to the end of the current line.
+    Ctrl-u Paste the contents from the clipboard at the current cursor position.
+
+Search and Replace in nano
+
+    Ctrl-w Search for a target string.
+    Alt-w Repeat the last search.
+    Alt-r Search and replace.
+
+
+USB booteable
+---------------------
