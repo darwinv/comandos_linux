@@ -1,0 +1,117 @@
+Home Directory
+-----------------------
+
+Each user has a home directory, usually placed under /home. The /root (slash-root) directory on modern Linux systems is no more than the root user's home directory.
+
+The /home directory is often mounted as a separate filesystem on its own partition, or even exported (shared) remotely on a network through NFS.
+
+Sometimes you may group users based on their department or function. You can then create subdirectories under the /home directory for each of these groups. For example, a school may organize /home with something like the following:
+
+/home/faculty/
+/home/staff/
+/home/students/
+
+
+
+The /bin and /sbin Directories
+----------------------------------
+
+The /bin directory contains executable binaries, essential commands used in single-user mode, 
+and essential commands required by all system users, such as:
+
+ps 	Produces a list of processes along with status information for the system.
+ls 	Produces a listing of the contents of a directory.
+cp 	Used to copy files.
+
+
+The /dev Directory
+----------------------------
+
+The /dev directory contains device nodes, a type of pseudo-file used by most hardware and software devices, except for network devices. This directory is:
+
+    Empty on the disk partition when it is not mounted
+    Contains entries which are created by the udev system, which creates and manages device nodes on Linux, creating them dynamically when devices are found. The /dev directory contains items such as:
+                /dev/sda1 (first partition on the first hard disk)
+                /dev/lp1 (second printer)
+                /dev/dvd1 (first DVD drive)
+
+
+The /var and /etc Directories
+-----------------------------
+
+The /var directory contains files that are expected to change in size and content as the system is running (var stands for variable) such as the entries in the following directories:
+
+    System log files: /var/log
+    Packages and database files: /var/lib
+    Print queues: /var/spool
+    Temp files: /var/tmp
+
+The /var directory may be put in its own filesystem so that growth of the files can be accommodated and the 
+file sizes do not fatally affect the system. 
+Network services directories such as /var/ftp (the FTP service)
+and /var/www (the HTTP web service) are also found under /var.
+
+The /etc directory is the home for system configuration files. 
+It contains no binary programs, although there are some executable scripts. 
+For example, the file resolv.conf tells the system where to go on the network to obtain host
+name to IP address mappings (DNS). Files like passwd,shadow and group for managing user 
+accounts are found in the /etc directory. System run level scripts are found in subdirectories of /etc. 
+For example, /etc/rc2.d contains links to scripts for entering and leaving run level 2. 
+The rc directory historically stood for Run Commands. Some distros extend the contents of /etc. 
+For example, Red Hat adds the sysconfig subdirectory that contains more configuration files.
+
+
+The /boot Directory
+----------------------------
+
+
+The /boot directory contains the few essential files needed to boot the system. For every alternative kernel installed on the system there are four files:
+
+    vmlinuz: the compressed Linux kernel, required for booting
+    initramfs: the initial ram filesystem, required for booting, sometimes called initrd, not initramfs
+    config: the kernel configuration file, only used for debugging and bookkeeping
+    System.map: kernel symbol table, only used for debugging
+    
+ 
+The /lib and /media Directories
+---------------------------------------
+
+
+/lib contains libraries (common code shared by applications and needed for them to run) for the essential programs in /bin and /sbin. These library filenames either start with ld or lib, for example, /lib/libncurses.so.5.7.
+
+Most of these are what are known as dynamically loaded libraries (also known as shared libraries or Shared Objects (SO)). On some Linux distributions there exists a /lib64 directory containing 64-bit libraries, while /lib contains 32-bit versions.
+
+Kernel modules (kernel code, often device drivers, that can be loaded and unloaded without re-starting the system) are located in /lib/modules/<kernel-version-number>.
+
+The /media directory is typically located where removable media, such as CDs, DVDs and USB drives are mounted. Unless configuration prohibits it, Linux automatically mounts the removable media in the /media directory when they are detected.
+
+
+Additional Directories Under /:
+-----------------------------------------
+
+/opt 	Optional application software packages.
+/sys 	Virtual pseudo-filesystem giving information about the system and the hardware. Can be used to alter system parameters and for debugging purposes. 
+/srv 	Site-specific data served up by the system. Seldom used.
+/tmp 	Temporary files; on some distributions erased across a reboot and/or may actually be a ramdisk in memory.
+/usr 	Multi-user applications, utilities and data.
+
+Subdirectories under /usr
+------------------------------
+
+The /usr directory contains non-essential programs and scripts (in the sense that they should not be needed to initially boot the system) and has at least the following sub-directories:
+Directory name
+	Usage
+/usr/include 	Header files used to compile applications.
+/usr/lib 	Libraries for programs in /usr/bin and /usr/sbin.
+/usr/lib64 	64-bit libraries for 64-bit programs in /usr/bin and /usr/sbin.
+/usr/sbin 	Non-essential system binaries, such as system daemons.
+/usr/share 	Shared data used by applications, generally architecture-independent.
+/usr/src 	Source code, usually for the Linux kernel.
+/usr/X11R6 	X Window configuration files; generally obsolete.
+/usr/local 	Data and programs specific to the local machine. Subdirectories include bin, sbin, lib, share, include, etc.
+/usr/bin 	This is the primary directory of executable commands on the system. 
+
+
+
+
+
